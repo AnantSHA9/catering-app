@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory
 import sqlite3, os, datetime
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-DB = 'catering.db'
+DB = os.environ.get("DB_PATH", "catering.db")
 
 def get_db():
     conn = sqlite3.connect(DB)
@@ -180,4 +180,9 @@ def update_expense_status(xid):
     return jsonify({'ok': True})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    import os
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False
+    )
