@@ -1,0 +1,5 @@
+cfenv/
+__pycache__/
+*.pyc
+catering.db
+*.db
