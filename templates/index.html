@@ -7,159 +7,199 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg: #f7f5f0;
-  --surface: #ffffff;
-  --border: #e2ddd6;
-  --text: #1a1714;
-  --muted: #7a7368;
-  --accent: #c85c1a;
-  --accent-light: #fdf0e8;
-  --green: #2d7a4f;
-  --green-light: #edf7f1;
-  --red: #c0392b;
-  --red-light: #fdf0ef;
-  --blue: #1a5c9e;
-  --blue-light: #edf3fc;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08);
-  --radius: 10px;
+  --bg:#f7f5f0;--surface:#fff;--border:#e2ddd6;--text:#1a1714;--muted:#7a7368;
+  --accent:#c85c1a;--accent-light:#fdf0e8;
+  --green:#2d7a4f;--green-light:#edf7f1;
+  --red:#c0392b;--red-light:#fdf0ef;
+  --blue:#1a5c9e;--blue-light:#edf3fc;
+  --yellow:#b8860b;--yellow-light:#fefce8;
+  --shadow:0 1px 3px rgba(0,0,0,0.08);--radius:10px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Noto Sans', 'Noto Sans Devanagari', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; }
-a { text-decoration: none; color: inherit; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans','Noto Sans Devanagari',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.5}
+a{text-decoration:none;color:inherit}
 
-.topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
-.topbar-title { font-size: 17px; font-weight: 600; color: var(--accent); letter-spacing: -0.3px; }
-.topbar-title span { color: var(--text); }
-.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
-.lang-btn { padding: 4px 12px; font-size: 12px; font-weight: 500; cursor: pointer; border: none; background: transparent; color: var(--muted); transition: all .15s; }
-.lang-btn.active { background: var(--accent); color: #fff; }
-.page { display: none; padding: 16px; max-width: 720px; margin: 0 auto; }
-.page.active { display: block; }
+/* TOPBAR */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.topbar-title{font-size:17px;font-weight:600;color:var(--accent);letter-spacing:-0.3px}
+.topbar-title span{color:var(--text)}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.lang-toggle{display:flex;border:1px solid var(--border);border-radius:20px;overflow:hidden}
+.lang-btn{padding:4px 12px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:all .15s}
+.lang-btn.active{background:var(--accent);color:#fff}
 
-.card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 14px; overflow: hidden; }
-.card-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-.card-header h3 { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-.card-body { padding: 16px; }
+/* NAV TABS */
+.nav-tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px}
+.nav-tab{padding:10px 16px;font-size:14px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all .15s; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: #b04e14; }
-.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
-.btn-ghost:hover { background: var(--bg); }
-.btn-sm { padding: 5px 10px; font-size: 13px; }
-.btn-danger { color: var(--red); border-color: #f5c6c4; background: transparent; }
-.btn-danger:hover { background: var(--red-light); }
-.btn-back { color: var(--accent); font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; background: none; border: none; padding: 0; margin-bottom: 16px; }
-.btn-logs { background: var(--blue-light); color: var(--blue); border: 1px solid #c5d9f5; }
-.btn-logs:hover { background: #daeaf8; }
+.page{display:none;padding:16px;max-width:720px;margin:0 auto}
+.page.active{display:block}
 
-.event-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; transition: box-shadow .15s; }
-.event-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.event-card-left h2 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
-.event-card-left p { font-size: 13px; color: var(--muted); }
-.event-card-right { text-align: right; }
-.event-card-right .total { font-size: 16px; font-weight: 600; color: var(--accent); }
-.event-card-right .date { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.empty-state { text-align: center; padding: 48px 16px; color: var(--muted); }
-.empty-state .icon { font-size: 40px; margin-bottom: 12px; }
-.empty-state p { font-size: 14px; }
+/* CARDS */
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}
+.card-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-header h3{font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.card-body{padding:16px}
 
-.page-header { display: flex; flex-direction: column; margin-bottom: 16px; }
-.page-header-row { display: flex; align-items: center; justify-content: space-between; }
-.event-title { font-size: 20px; font-weight: 600; }
-.event-subtitle { font-size: 13px; color: var(--muted); margin-top: 2px; }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;transition:all .15s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#b04e14}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--bg)}
+.btn-sm{padding:5px 10px;font-size:13px}
+.btn-danger{color:var(--red);border-color:#f5c6c4;background:transparent}
+.btn-danger:hover{background:var(--red-light)}
+.btn-back{color:var(--accent);font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:4px;background:none;border:none;padding:0;margin-bottom:16px}
+.btn-logs{background:var(--blue-light);color:var(--blue);border:1px solid #c5d9f5}
+.btn-logs:hover{background:#daeaf8}
 
-/* VENDOR GROUPS */
-.vendor-group { border-bottom: 1px solid var(--border); }
-.vendor-group:last-child { border-bottom: none; }
-.vendor-group-header { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: var(--bg); user-select: none; }
-.vendor-group-header:hover { background: #f0ede7; }
-.vendor-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.vendor-total { font-size: 13px; color: var(--muted); }
-.vendor-chevron { font-size: 11px; color: var(--muted); transition: transform .2s; }
-.vendor-chevron.open { transform: rotate(90deg); }
-.vendor-entries { display: block; }
-.vendor-entries.collapsed { display: none; }
-.expense-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 16px 9px 28px; border-top: 1px solid var(--border); }
-.expense-row-left { flex: 1; min-width: 0; }
-.expense-row-item { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.expense-row-meta { font-size: 12px; color: var(--muted); margin-top: 1px; }
-.expense-row-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.expense-amount { font-size: 14px; font-weight: 600; }
+/* EVENT LIST */
+.event-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;cursor:pointer;transition:box-shadow .15s}
+.event-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.event-card-left h2{font-size:16px;font-weight:600;margin-bottom:2px}
+.event-card-left p{font-size:13px;color:var(--muted)}
+.event-card-right{text-align:right}
+.event-card-right .total{font-size:16px;font-weight:600;color:var(--accent)}
+.event-card-right .date{font-size:12px;color:var(--muted);margin-top:2px}
+.empty-state{text-align:center;padding:48px 16px;color:var(--muted)}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.empty-state p{font-size:14px}
+
+/* PAGE HEADER */
+.page-header{display:flex;flex-direction:column;margin-bottom:16px}
+.page-header-row{display:flex;align-items:center;justify-content:space-between}
+.event-title{font-size:20px;font-weight:600}
+.event-subtitle{font-size:13px;color:var(--muted);margin-top:2px}
 
 /* STATUS BADGES */
-.status-badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; }
-.status-due { background: #fdf0e8; color: var(--accent); }
-.status-paid { background: var(--green-light); color: var(--green); }
+.status-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:none}
+.status-due{background:#fdf0e8;color:var(--accent)}
+.status-paid{background:var(--green-light);color:var(--green)}
 
-/* TABLES */
-.data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.data-table th { text-align: left; padding: 8px 10px; font-size: 12px; font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; }
-.data-table td { padding: 10px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-.data-table tr:last-child td { border-bottom: none; }
-.data-table .del-btn { color: var(--red); background: none; border: none; cursor: pointer; font-size: 16px; padding: 2px 6px; opacity: 0.5; }
-.data-table .del-btn:hover { opacity: 1; }
-.no-data { text-align: center; padding: 20px; font-size: 13px; color: var(--muted); }
+/* LABOUR TABLE */
+.data-table{width:100%;border-collapse:collapse;font-size:14px}
+.data-table th{text-align:left;padding:8px 10px;font-size:12px;font-weight:500;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+.data-table td{padding:10px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.data-table tr:last-child td{border-bottom:none}
+.del-btn{color:var(--red);background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;opacity:0.5}
+.del-btn:hover{opacity:1}
+.no-data{text-align:center;padding:20px;font-size:13px;color:var(--muted)}
+
+/* VENDOR GROUPS */
+.vendor-group{border-bottom:1px solid var(--border)}
+.vendor-group:last-child{border-bottom:none}
+.vendor-group-header{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:var(--bg);user-select:none}
+.vendor-group-header:hover{background:#f0ede7}
+.vendor-name{font-size:14px;font-weight:600;color:var(--text)}
+.vendor-total{font-size:13px;color:var(--muted)}
+.vendor-chevron{font-size:11px;color:var(--muted);transition:transform .2s;display:inline-block}
+.vendor-chevron.open{transform:rotate(90deg)}
+.vendor-entries{display:block}
+.vendor-entries.collapsed{display:none}
+.expense-row{display:flex;align-items:center;justify-content:space-between;padding:9px 16px 9px 28px;border-top:1px solid var(--border)}
+.expense-row-left{flex:1;min-width:0}
+.expense-row-item{font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.expense-row-meta{font-size:12px;color:var(--muted);margin-top:1px}
+.expense-row-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.expense-amount{font-size:14px;font-weight:600}
+
+/* INLINE ADD */
+.inline-add{display:none;padding:8px 16px 10px 28px;border-top:1px solid var(--border);background:#fafaf8}
+.inline-add.open{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.inline-add input{padding:7px 10px;border:1px solid var(--border);border-radius:7px;font-size:13px;background:#fff;color:var(--text);font-family:inherit}
+.inline-add input:focus{outline:none;border-color:var(--accent)}
+.inline-add .f-item{flex:2;min-width:80px}
+.inline-add .f-qty{flex:1;min-width:60px}
+.inline-add .f-amt{flex:1;min-width:70px}
+.inline-add .f-save{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 14px;font-size:13px;cursor:pointer;white-space:nowrap}
+.inline-add .f-save:hover{background:#b04e14}
+.add-item-btn{display:flex;align-items:center;gap:6px;padding:8px 16px 8px 28px;border-top:1px solid var(--border);font-size:13px;color:var(--accent);cursor:pointer;background:none;border-left:none;border-right:none;border-bottom:none;width:100%;text-align:left;font-family:inherit;font-weight:500}
+.add-item-btn:hover{background:var(--accent-light)}
 
 /* SUMMARY */
-.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.summary-box { background: var(--bg); border-radius: 8px; padding: 14px; }
-.summary-box.full { grid-column: 1 / -1; background: var(--accent-light); border: 1px solid #f0c8a8; }
-.summary-box.green { background: var(--green-light); border: 1px solid #b8e3cc; }
-.summary-box.red { background: var(--red-light); border: 1px solid #f5c6c4; }
-.summary-box label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
-.summary-box .amount { font-size: 20px; font-weight: 600; }
-.summary-box.full .amount { color: var(--accent); }
-.summary-box.green .amount { color: var(--green); }
-.summary-box.red .amount { color: var(--red); }
-.cat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-.cat-row:last-child { border-bottom: none; }
-.cat-badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.summary-box{background:var(--bg);border-radius:8px;padding:14px}
+.summary-box.full{grid-column:1/-1;background:var(--accent-light);border:1px solid #f0c8a8}
+.summary-box.green{background:var(--green-light);border:1px solid #b8e3cc}
+.summary-box.red{background:var(--red-light);border:1px solid #f5c6c4}
+.summary-box label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+.summary-box .amount{font-size:20px;font-weight:600}
+.summary-box.full .amount{color:var(--accent)}
+.summary-box.green .amount{color:var(--green)}
+.summary-box.red .amount{color:var(--red)}
+.cat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.cat-row:last-child{border-bottom:none}
+.cat-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
 
 /* LOGS */
-.log-entry { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.log-entry:last-child { border-bottom: none; }
-.log-left { flex: 1; min-width: 0; }
-.log-vendor { font-size: 14px; font-weight: 600; }
-.log-detail { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.log-ts { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.log-right { text-align: right; flex-shrink: 0; }
-.log-amount { font-size: 15px; font-weight: 600; }
+.log-entry{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.log-entry:last-child{border-bottom:none}
+.log-left{flex:1;min-width:0}
+.log-name{font-size:14px;font-weight:600}
+.log-detail{font-size:12px;color:var(--muted);margin-top:2px}
+.log-ts{font-size:11px;color:var(--muted);margin-top:3px}
+.log-right{text-align:right;flex-shrink:0}
+.log-amount{font-size:15px;font-weight:600}
+.type-badge{display:inline-block;padding:1px 6px;border-radius:10px;font-size:10px;font-weight:600;margin-right:4px}
+.type-labour{background:#f0ebff;color:#5b21b6}
+.type-expense{background:#e8f4fd;color:#1a6fa8}
+
+/* INVENTORY */
+.inv-search{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;background:var(--surface);color:var(--text);font-family:inherit;margin-bottom:14px}
+.inv-search:focus{outline:none;border-color:var(--accent)}
+.alert-strip{background:#fef3cd;border:1px solid #f5c46e;border-radius:8px;padding:10px 14px;margin-bottom:14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.alert-strip-text{font-size:13px;font-weight:500;color:#7a4f00}
+.inv-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)}
+.inv-item:last-child{border-bottom:none}
+.inv-item-left{flex:1;min-width:0}
+.inv-item-name{font-size:14px;font-weight:600}
+.inv-item-qty{font-size:13px;color:var(--muted);margin-top:1px}
+.inv-item-right{text-align:right;flex-shrink:0}
+.exp-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.exp-ok{background:var(--green-light);color:var(--green)}
+.exp-soon{background:var(--yellow-light);color:var(--yellow)}
+.exp-urgent{background:#fff3cd;color:#b45309}
+.exp-expired{background:var(--red-light);color:var(--red)}
+.exp-none{background:var(--bg);color:var(--muted)}
 
 /* MODAL */
-.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: flex-end; justify-content: center; }
-.overlay.open { display: flex; }
-.modal { background: var(--surface); border-radius: 16px 16px 0 0; width: 100%; max-width: 720px; padding: 20px 16px 32px; max-height: 90vh; overflow-y: auto; animation: slideup .2s ease; }
-@keyframes slideup { from { transform: translateY(30px); opacity:0; } to { transform: translateY(0); opacity:1; } }
-.modal-title { font-size: 17px; font-weight: 600; margin-bottom: 18px; }
-.form-row { margin-bottom: 14px; }
-.form-row label { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 5px; }
-.form-row input, .form-row select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; background: var(--bg); color: var(--text); font-family: inherit; }
-.form-row input:focus, .form-row select:focus { outline: none; border-color: var(--accent); background: #fff; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.form-actions { display: flex; gap: 10px; margin-top: 18px; }
-.form-actions .btn { flex: 1; justify-content: center; }
-.status-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.status-opt { flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: var(--bg); color: var(--muted); transition: all .15s; }
-.status-opt.active-due { background: #fdf0e8; color: var(--accent); }
-.status-opt.active-paid { background: var(--green-light); color: var(--green); }
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;align-items:flex-end;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:var(--surface);border-radius:16px 16px 0 0;width:100%;max-width:720px;padding:20px 16px 32px;max-height:90vh;overflow-y:auto;animation:slideup .2s ease}
+@keyframes slideup{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-title{font-size:17px;font-weight:600;margin-bottom:18px}
+.form-row{margin-bottom:14px}
+.form-row label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:5px}
+.form-row input,.form-row select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:15px;background:var(--bg);color:var(--text);font-family:inherit}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--accent);background:#fff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-actions{display:flex;gap:10px;margin-top:18px}
+.form-actions .btn{flex:1;justify-content:center}
+.status-toggle{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.status-opt{flex:1;padding:10px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;border:none;background:var(--bg);color:var(--muted);transition:all .15s}
+.status-opt.active-due{background:#fdf0e8;color:var(--accent)}
+.status-opt.active-paid{background:var(--green-light);color:var(--green)}
 
 /* CATEGORY COLORS */
-.cat-kirana { background: #fef9e7; color: #7d6608; }
-.cat-vendor { background: #edf3fc; color: var(--blue); }
-.cat-transport { background: #edf7f1; color: var(--green); }
-.cat-electricity { background: #fdf0e8; color: var(--accent); }
-.cat-water { background: #e8f4fd; color: #1a6fa8; }
-.cat-venue { background: #f5eeff; color: #6c3483; }
-.cat-others { background: #f2f3f4; color: #515a5a; }
+.cat-kirana{background:#fef9e7;color:#7d6608}
+.cat-vendor{background:#edf3fc;color:var(--blue)}
+.cat-transport{background:#edf7f1;color:var(--green)}
+.cat-electricity{background:#fdf0e8;color:var(--accent)}
+.cat-water{background:#e8f4fd;color:#1a6fa8}
+.cat-venue{background:#f5eeff;color:#6c3483}
+.cat-others{background:#f2f3f4;color:#515a5a}
+.cat-labour{background:#f0ebff;color:#5b21b6}
 
-@media (max-width: 480px) {
-  .summary-grid { grid-template-columns: 1fr 1fr; }
-  .form-grid { grid-template-columns: 1fr; }
-  .event-card { flex-direction: column; gap: 10px; }
-  .event-card-right { text-align: left; }
-  .data-table { font-size: 13px; }
-  .data-table th, .data-table td { padding: 8px 6px; }
+@media(max-width:480px){
+  .summary-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .event-card{flex-direction:column;gap:10px}
+  .event-card-right{text-align:left}
+  .data-table{font-size:13px}
+  .data-table th,.data-table td{padding:8px 6px}
+  .inline-add{flex-wrap:wrap}
 }
 </style>
 </head>
@@ -167,13 +207,20 @@ a { text-decoration: none; color: inherit; }
 
 <div class="topbar">
   <div class="topbar-title">🍽 <span data-t="app_title">Catering Finance</span></div>
-  <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('hi')">HI</button>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('hi')">HI</button>
+    </div>
   </div>
 </div>
 
-<!-- PAGE 1: EVENT LIST -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="switchTab('events')" data-t="tab_events">Events</button>
+  <button class="nav-tab" onclick="switchTab('godown')" data-t="tab_godown">Godown</button>
+</div>
+
+<!-- PAGE: EVENT LIST -->
 <div class="page active" id="page-list">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;margin-top:4px">
     <h1 style="font-size:18px;font-weight:600" data-t="all_events">All Events</h1>
@@ -182,7 +229,7 @@ a { text-decoration: none; color: inherit; }
   <div id="events-list"></div>
 </div>
 
-<!-- PAGE 2: EVENT DETAIL -->
+<!-- PAGE: EVENT DETAIL -->
 <div class="page" id="page-detail">
   <button class="btn-back" onclick="goBack()">← <span data-t="all_events">All Events</span></button>
   <div class="page-header">
@@ -193,7 +240,7 @@ a { text-decoration: none; color: inherit; }
       </div>
       <div style="display:flex;gap:8px">
         <button class="btn btn-logs btn-sm" onclick="openLogs()" data-t="view_logs">View Logs</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteCurrentEvent()" style="font-size:13px">🗑</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteCurrentEvent()">🗑</button>
       </div>
     </div>
   </div>
@@ -204,12 +251,10 @@ a { text-decoration: none; color: inherit; }
       <h3 data-t="labour">Labour</h3>
       <button class="btn btn-ghost btn-sm" onclick="openAddLabour()">+ <span data-t="add">Add</span></button>
     </div>
-    <div class="card-body" style="padding:0">
-      <div id="labour-table"></div>
-    </div>
+    <div id="labour-table"></div>
   </div>
 
-  <!-- EXPENSES (Live View: Due only) -->
+  <!-- EXPENSES -->
   <div class="card">
     <div class="card-header">
       <div>
@@ -232,16 +277,25 @@ a { text-decoration: none; color: inherit; }
   </div>
 </div>
 
-<!-- PAGE 3: LOGS -->
+<!-- PAGE: LOGS -->
 <div class="page" id="page-logs">
-  <button class="btn-back" onclick="backToDetail()">← <span id="logs-back-label">Event</span></button>
+  <button class="btn-back" onclick="backToDetail()">← <span id="logs-back-label"></span></button>
   <div style="margin-bottom:16px">
     <div class="event-title" id="logs-title"></div>
     <div style="font-size:13px;color:var(--muted);margin-top:2px" data-t="all_transactions">All Transactions</div>
   </div>
-  <div class="card">
-    <div id="logs-list"></div>
+  <div class="card"><div id="logs-list"></div></div>
+</div>
+
+<!-- PAGE: GODOWN -->
+<div class="page" id="page-godown">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;margin-top:4px">
+    <h1 style="font-size:18px;font-weight:600" data-t="tab_godown">Godown</h1>
+    <button class="btn btn-primary btn-sm" onclick="openAddInventory()">+ <span data-t="add_item">Add Item</span></button>
   </div>
+  <input class="inv-search" id="inv-search" placeholder="Search items..." data-t-placeholder="search_items" oninput="filterInventory()"/>
+  <div id="inv-alert"></div>
+  <div class="card"><div id="inv-list"></div></div>
 </div>
 
 <!-- MODAL: Add Event -->
@@ -312,10 +366,38 @@ a { text-decoration: none; color: inherit; }
   </div>
 </div>
 
+<!-- MODAL: Add Inventory -->
+<div class="overlay" id="modal-inv" onclick="closeModal('modal-inv',event)">
+  <div class="modal">
+    <div class="modal-title" data-t="add_item">Add Item</div>
+    <div class="form-row"><label data-t="item_name">Item Name</label><input id="i-name" placeholder="e.g. Rice"/></div>
+    <div class="form-grid">
+      <div class="form-row"><label data-t="quantity">Quantity</label><input id="i-qty" type="number" min="0" step="0.1" placeholder="0"/></div>
+      <div class="form-row"><label data-t="unit">Unit</label>
+        <select id="i-unit">
+          <option value="kg">kg</option>
+          <option value="litre">litre</option>
+          <option value="piece">piece</option>
+          <option value="packet">packet</option>
+          <option value="box">box</option>
+          <option value="dozen">dozen</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row"><label data-t="expiry_date">Expiry Date (optional)</label><input id="i-exp" type="date"/></div>
+    <div class="form-row"><label data-t="notes">Notes (optional)</label><input id="i-notes" placeholder="e.g. Stored in rack 2"/></div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-inv')" data-t="cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="saveInventory()" data-t="save">Save</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const T = {
-  en: {
-    app_title:"Catering Finance", all_events:"All Events", add_event:"Add Event",
+  en:{
+    app_title:"Catering Finance", tab_events:"Events", tab_godown:"Godown",
+    all_events:"All Events", add_event:"Add Event",
     event_name:"Event Name", client_name:"Client Name", date:"Date",
     labour:"Labour", expenses:"Expenses", summary:"Summary",
     add:"Add", add_labour_title:"Add Labour Entry", add_expense_title:"Add Expense",
@@ -326,7 +408,8 @@ const T = {
     payment_status:"Payment Status", due:"Due", paid:"Paid",
     timestamp_auto:"Timestamp will be set automatically",
     cat_kirana:"Kirana", cat_vendor:"Vendor", cat_transport:"Transport",
-    cat_electricity:"Electricity", cat_water:"Water", cat_venue:"Venue", cat_others:"Others",
+    cat_electricity:"Electricity", cat_water:"Water", cat_venue:"Venue",
+    cat_others:"Others", cat_labour:"Labour",
     save:"Save", cancel:"Cancel",
     total_labour:"Total Labour", total_expenses:"Total Expenses",
     total_paid:"Total Paid", total_due:"Total Due", total_cost:"Total Cost",
@@ -334,12 +417,18 @@ const T = {
     create_first:"Create your first catering event.",
     name:"Name", rate:"Rate/Day", days:"Days", pay:"Total Pay",
     cat:"Category", vendor:"Vendor", item:"Item", qty:"Qty",
+    mark_paid:"Mark Paid", mark_due:"Mark Due",
     view_logs:"View Logs", all_transactions:"All Transactions",
-    live_view_hint:"Showing due payments only",
-    no_logs:"No transactions yet."
+    live_view_hint:"Showing due payments only", no_logs:"No transactions yet.",
+    add_item:"Add Item", item_name:"Item Name", quantity:"Quantity", unit:"Unit",
+    expiry_date:"Expiry Date (optional)", notes:"Notes (optional)",
+    search_items:"Search items...", no_inventory:"No items in godown.",
+    expiring_soon:"items expiring within 7 days", expired_label:"EXPIRED",
+    tap_to_view:"tap to view",
   },
-  hi: {
-    app_title:"कैटरिंग फाइनेंस", all_events:"सभी इवेंट", add_event:"इवेंट जोड़ें",
+  hi:{
+    app_title:"कैटरिंग फाइनेंस", tab_events:"इवेंट", tab_godown:"गोदाम",
+    all_events:"सभी इवेंट", add_event:"इवेंट जोड़ें",
     event_name:"इवेंट का नाम", client_name:"ग्राहक का नाम", date:"तारीख",
     labour:"मजदूरी", expenses:"खर्च", summary:"सारांश",
     add:"जोड़ें", add_labour_title:"मजदूरी दर्ज करें", add_expense_title:"खर्च जोड़ें",
@@ -350,102 +439,94 @@ const T = {
     payment_status:"भुगतान स्थिति", due:"बकाया", paid:"भुगतान हो गया",
     timestamp_auto:"समय-मुहर स्वतः जुड़ेगी",
     cat_kirana:"किराना", cat_vendor:"वेंडर", cat_transport:"परिवहन",
-    cat_electricity:"बिजली", cat_water:"पानी", cat_venue:"स्थान", cat_others:"अन्य",
+    cat_electricity:"बिजली", cat_water:"पानी", cat_venue:"स्थान",
+    cat_others:"अन्य", cat_labour:"मजदूरी",
     save:"सेव करें", cancel:"रद्द करें",
     total_labour:"कुल मजदूरी", total_expenses:"कुल खर्च",
     total_paid:"कुल भुगतान", total_due:"कुल बकाया", total_cost:"कुल लागत",
     by_category:"श्रेणी के अनुसार", no_entries:"कोई प्रविष्टि नहीं।", no_events:"कोई इवेंट नहीं।",
-    create_first:"अपना पहला कैटरिंग इवेंट बनाएं।",
+    create_first:"अपना पहला इवेंट बनाएं।",
     name:"नाम", rate:"दर/दिन", days:"दिन", pay:"कुल भुगतान",
     cat:"श्रेणी", vendor:"वेंडर", item:"सामान", qty:"मात्रा",
+    mark_paid:"भुगतान करें", mark_due:"बकाया करें",
     view_logs:"लॉग देखें", all_transactions:"सभी लेन-देन",
-    live_view_hint:"केवल बकाया दिख रहा है",
-    no_logs:"अभी कोई लेन-देन नहीं।"
+    live_view_hint:"केवल बकाया दिख रहा है", no_logs:"अभी कोई लेन-देन नहीं।",
+    add_item:"सामान जोड़ें", item_name:"सामान का नाम", quantity:"मात्रा", unit:"इकाई",
+    expiry_date:"समाप्ति तिथि (वैकल्पिक)", notes:"नोट (वैकल्पिक)",
+    search_items:"सामान खोजें...", no_inventory:"गोदाम में कोई सामान नहीं।",
+    expiring_soon:"सामान 7 दिनों में समाप्त हो रहे हैं", expired_label:"समाप्त",
+    tap_to_view:"देखें",
   }
 };
-let lang = 'en';
-let currentEventId = null;
-let selectedStatus = 'due';
-let currentEventData = null;
 
-function t(key){ return T[lang][key] || T['en'][key] || key; }
+let lang='en', currentEventId=null, selectedStatus='due', currentEventData=null;
+let inventoryData=[];
+
+function t(k){ return T[lang][k]||T['en'][k]||k }
+function fmt(n){ return '₹'+Number(n||0).toLocaleString('en-IN') }
+function fmtDate(d){ if(!d) return ''; const dt=new Date(d); return isNaN(dt)?d:dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) }
+function fmtTS(ts){ if(!ts) return ''; const d=new Date(ts); if(isNaN(d)) return ts; return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}) }
+function today(){ return new Date().toISOString().slice(0,10) }
 
 function setLang(l){
-  lang = l;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent===l.toUpperCase()));
-  document.querySelectorAll('[data-t]').forEach(el => {
-    const k = el.getAttribute('data-t');
-    el.textContent = t(k);
-  });
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()));
+  document.querySelectorAll('[data-t]').forEach(el=>{ el.textContent=t(el.getAttribute('data-t')) });
+  document.querySelectorAll('[data-t-placeholder]').forEach(el=>{ el.placeholder=t(el.getAttribute('data-t-placeholder')) });
   if(currentEventId) loadEvent(currentEventId);
+  else if(document.getElementById('page-godown').classList.contains('active')) renderInventory(inventoryData);
   else loadEvents();
 }
 
-function fmt(n){ return '₹' + Number(n||0).toLocaleString('en-IN'); }
-function fmtDate(d){ if(!d) return ''; const dt = new Date(d); return dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); }
-function fmtTS(ts){
-  if(!ts) return '';
-  const d = new Date(ts);
-  if(isNaN(d)) return ts;
-  return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'}) + ' ' +
-         d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
-}
-function today(){ return new Date().toISOString().slice(0,10); }
-
 // NAV
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+let activeTab='events';
+function switchTab(tab){
+  activeTab=tab;
+  document.querySelectorAll('.nav-tab').forEach((el,i)=>el.classList.toggle('active',['events','godown'][i]===tab));
+  if(tab==='events'){ showPage('page-list'); loadEvents(); }
+  else { showPage('page-godown'); loadInventory(); }
 }
-function goBack(){ currentEventId=null; showPage('page-list'); loadEvents(); }
-function backToDetail(){ showPage('page-detail'); }
+function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active') }
+function goBack(){ currentEventId=null; showPage('page-list'); loadEvents() }
+function backToDetail(){ showPage('page-detail') }
 
 // EVENTS LIST
 async function loadEvents(){
-  const res = await fetch('/api/events');
-  const events = await res.json();
-  const el = document.getElementById('events-list');
+  const res=await fetch('/api/events');
+  const events=await res.json();
+  const el=document.getElementById('events-list');
   if(!events.length){
-    el.innerHTML = `<div class="empty-state"><div class="icon">🍽</div><p>${t('no_events')}</p><p style="margin-top:6px;font-size:13px">${t('create_first')}</p></div>`;
+    el.innerHTML=`<div class="empty-state"><div class="icon">🍽</div><p>${t('no_events')}</p><p style="margin-top:6px;font-size:13px">${t('create_first')}</p></div>`;
     return;
   }
-  el.innerHTML = events.map(e => `
+  el.innerHTML=events.map(e=>`
     <div class="event-card" onclick="openEvent(${e.id})">
-      <div class="event-card-left">
-        <h2>${e.name}</h2>
-        <p>${e.client_name}</p>
-      </div>
-      <div class="event-card-right">
-        <div class="total">${fmt(e.total_cost)}</div>
-        <div class="date">${fmtDate(e.date)}</div>
-      </div>
-    </div>
-  `).join('');
+      <div class="event-card-left"><h2>${e.name}</h2><p>${e.client_name}</p></div>
+      <div class="event-card-right"><div class="total">${fmt(e.total_cost)}</div><div class="date">${fmtDate(e.date)}</div></div>
+    </div>`).join('');
 }
 
 async function openEvent(id){
-  currentEventId = id;
-  showPage('page-detail');
-  loadEvent(id);
+  currentEventId=id; showPage('page-detail'); loadEvent(id);
 }
 
 async function loadEvent(id){
-  const res = await fetch(`/api/events/${id}`);
-  const data = await res.json();
-  currentEventData = data;
-  const ev = data.event;
-  document.getElementById('detail-name').textContent = ev.name;
-  document.getElementById('detail-sub').textContent = ev.client_name + ' · ' + fmtDate(ev.date);
+  const res=await fetch(`/api/events/${id}`);
+  const data=await res.json();
+  currentEventData=data;
+  const ev=data.event;
+  document.getElementById('detail-name').textContent=ev.name;
+  document.getElementById('detail-sub').textContent=ev.client_name+' · '+fmtDate(ev.date);
   renderLabour(data.labour);
   renderExpenseGroups(data.expenses);
   renderSummary(data.summary);
 }
 
-// LABOUR
+// LABOUR — with Mark Paid button
 function renderLabour(items){
-  const el = document.getElementById('labour-table');
+  const el=document.getElementById('labour-table');
   if(!items.length){ el.innerHTML=`<div class="no-data">${t('no_entries')}</div>`; return; }
-  el.innerHTML = `<table class="data-table">
+  el.innerHTML=`<table class="data-table" style="width:100%">
     <thead><tr>
       <th>${t('name')}</th><th>${t('rate')}</th><th>${t('days')}</th><th>${t('pay')}</th><th></th>
     </tr></thead>
@@ -455,226 +536,318 @@ function renderLabour(items){
         <td>${fmt(l.rate_per_day)}</td>
         <td>${l.days_worked}</td>
         <td style="font-weight:600;color:var(--accent)">${fmt(l.total_pay)}</td>
-        <td><button class="del-btn" onclick="deleteLabour(${l.id})">×</button></td>
+        <td style="white-space:nowrap">
+          <button class="status-badge status-due" onclick="markLabourPaid(${l.id})" style="margin-right:4px">${t('mark_paid')}</button>
+          <button class="del-btn" onclick="deleteLabour(${l.id})">×</button>
+        </td>
       </tr>`).join('')}
     </tbody>
   </table>`;
 }
 
-// EXPENSES — grouped by vendor
-const catColors = {kirana:'cat-kirana',vendor:'cat-vendor',transport:'cat-transport',electricity:'cat-electricity',water:'cat-water',venue:'cat-venue',others:'cat-others'};
+// EXPENSES — vendor grouped with inline add
+const catColors={kirana:'cat-kirana',vendor:'cat-vendor',transport:'cat-transport',electricity:'cat-electricity',water:'cat-water',venue:'cat-venue',others:'cat-others',labour:'cat-labour'};
 
 function renderExpenseGroups(items){
-  const el = document.getElementById('expense-groups');
+  const el=document.getElementById('expense-groups');
   if(!items.length){ el.innerHTML=`<div class="no-data">${t('no_entries')}</div>`; return; }
-  // Group by vendor name
-  const groups = {};
-  items.forEach(x => {
-    if(!groups[x.name]) groups[x.name] = [];
-    groups[x.name].push(x);
-  });
-  el.innerHTML = Object.entries(groups).map(([vendor, entries], gi) => {
-    const vendorTotal = entries.reduce((s,e)=>s+e.amount,0);
+  const groups={};
+  items.forEach(x=>{ if(!groups[x.name]) groups[x.name]={cat:x.category,entries:[]}; groups[x.name].entries.push(x) });
+  el.innerHTML=Object.entries(groups).map(([vendor,g],gi)=>{
+    const total=g.entries.reduce((s,e)=>s+e.amount,0);
     return `
     <div class="vendor-group">
       <div class="vendor-group-header" onclick="toggleVendor(${gi})">
-        <div>
-          <span class="vendor-name">${vendor}</span>
-          <span class="vendor-total" style="margin-left:8px">${fmt(vendorTotal)}</span>
-        </div>
+        <div><span class="vendor-name">${vendor}</span><span class="vendor-total" style="margin-left:8px">${fmt(total)}</span></div>
         <span class="vendor-chevron open" id="chev-${gi}">▶</span>
       </div>
       <div class="vendor-entries" id="vg-${gi}">
-        ${entries.map(x=>`
+        ${g.entries.map(x=>`
           <div class="expense-row">
             <div class="expense-row-left">
               <div class="expense-row-item">${x.item||'—'} ${x.quantity?'<span style="color:var(--muted);font-size:12px">('+x.quantity+')</span>':''}</div>
-              <div class="expense-row-meta">
-                <span class="cat-badge ${catColors[x.category]||'cat-others'}">${t('cat_'+x.category)||x.category}</span>
-                ${x.timestamp ? ' · ' + fmtTS(x.timestamp) : ''}
-              </div>
+              <div class="expense-row-meta"><span class="cat-badge ${catColors[x.category]||'cat-others'}">${t('cat_'+x.category)||x.category}</span>${x.timestamp?' · '+fmtTS(x.timestamp):''}</div>
             </div>
             <div class="expense-row-right">
               <span class="expense-amount">${fmt(x.amount)}</span>
-              <button class="del-btn data-table" style="color:var(--red);background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;opacity:0.5" onclick="deleteExpense(${x.id})">×</button>
+              <button class="del-btn" onclick="deleteExpense(${x.id})">×</button>
             </div>
           </div>`).join('')}
+        <div class="inline-add" id="ia-${gi}">
+          <input class="f-item" id="ia-item-${gi}" placeholder="${t('item_optional')}" onkeydown="inlineKey(event,${gi},'${vendor}','${g.cat}')"/>
+          <input class="f-qty"  id="ia-qty-${gi}"  placeholder="${t('qty')}" onkeydown="inlineKey(event,${gi},'${vendor}','${g.cat}')"/>
+          <input class="f-amt"  id="ia-amt-${gi}"  placeholder="₹" type="number" min="0" onkeydown="inlineKey(event,${gi},'${vendor}','${g.cat}')"/>
+          <button class="f-save" onclick="saveInline(${gi},'${vendor}','${g.cat}')">✓</button>
+        </div>
+        <button class="add-item-btn" onclick="toggleInlineAdd(${gi})">+ ${t('add')} ${vendor}</button>
       </div>
     </div>`;
   }).join('');
 }
 
 function toggleVendor(gi){
-  const entries = document.getElementById('vg-'+gi);
-  const chev = document.getElementById('chev-'+gi);
-  const collapsed = entries.classList.toggle('collapsed');
-  chev.classList.toggle('open', !collapsed);
+  const el=document.getElementById('vg-'+gi), ch=document.getElementById('chev-'+gi);
+  const c=el.classList.toggle('collapsed');
+  ch.classList.toggle('open',!c);
+}
+function toggleInlineAdd(gi){
+  const el=document.getElementById('ia-'+gi);
+  const opening=!el.classList.contains('open');
+  el.classList.toggle('open');
+  if(opening) document.getElementById('ia-item-'+gi).focus();
+}
+function inlineKey(e,gi,vendor,cat){ if(e.key==='Enter') saveInline(gi,vendor,cat) }
+
+async function saveInline(gi,vendor,cat){
+  const item=document.getElementById('ia-item-'+gi).value.trim();
+  const qty=document.getElementById('ia-qty-'+gi).value.trim();
+  const amt=parseFloat(document.getElementById('ia-amt-'+gi).value)||0;
+  if(!amt) return;
+  await fetch(`/api/events/${currentEventId}/expenses`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({category:cat,name:vendor,item,quantity:qty,amount:amt,status:'due'})
+  });
+  // clear fields
+  document.getElementById('ia-item-'+gi).value='';
+  document.getElementById('ia-qty-'+gi).value='';
+  document.getElementById('ia-amt-'+gi).value='';
+  document.getElementById('ia-item-'+gi).focus();
+  // reload and reopen this group
+  const res=await fetch(`/api/events/${currentEventId}`);
+  currentEventData=await res.json();
+  renderExpenseGroups(currentEventData.expenses);
+  renderSummary(currentEventData.summary);
+  // reopen the inline add for this vendor (find new gi by vendor name)
+  const groups=document.querySelectorAll('.vendor-group');
+  groups.forEach((g,i)=>{
+    const vname=g.querySelector('.vendor-name');
+    if(vname&&vname.textContent===vendor){
+      const ia=document.getElementById('ia-'+i);
+      if(ia){ ia.classList.add('open'); document.getElementById('ia-item-'+i).focus() }
+    }
+  });
 }
 
-// SUMMARY — updated with paid/due
+// SUMMARY
 function renderSummary(s){
-  document.getElementById('summary-boxes').innerHTML = `
+  document.getElementById('summary-boxes').innerHTML=`
     <div class="summary-box"><label>${t('total_labour')}</label><div class="amount">${fmt(s.total_labour)}</div></div>
     <div class="summary-box"><label>${t('total_expenses')}</label><div class="amount">${fmt(s.total_expenses)}</div></div>
     <div class="summary-box green"><label>${t('total_paid')}</label><div class="amount">${fmt(s.total_paid)}</div></div>
     <div class="summary-box red"><label>${t('total_due')}</label><div class="amount">${fmt(s.total_due)}</div></div>
     <div class="summary-box full"><label>${t('total_cost')}</label><div class="amount">${fmt(s.total_cost)}</div></div>
   `;
-  const cats = s.category_totals || {};
-  const breakdown = document.getElementById('category-breakdown');
-  if(!Object.keys(cats).length){ breakdown.innerHTML=`<div class="no-data">${t('no_entries')}</div>`; return; }
-  breakdown.innerHTML = Object.entries(cats).map(([cat,amt])=>`
+  const cats=s.category_totals||{};
+  const bd=document.getElementById('category-breakdown');
+  if(!Object.keys(cats).length){ bd.innerHTML=`<div class="no-data">${t('no_entries')}</div>`; return; }
+  bd.innerHTML=Object.entries(cats).map(([cat,amt])=>`
     <div class="cat-row">
       <span><span class="cat-badge ${catColors[cat]||'cat-others'}">${t('cat_'+cat)||cat}</span></span>
       <span style="font-weight:600">${fmt(amt)}</span>
     </div>`).join('');
 }
 
-// LOGS PAGE
+// LOGS — unified labour + expenses
 function openLogs(){
   if(!currentEventData) return;
-  const ev = currentEventData.event;
-  document.getElementById('logs-title').textContent = ev.name + ' — ' + t('all_transactions');
-  document.getElementById('logs-back-label').textContent = ev.name;
-  renderLogs(currentEventData.logs || []);
+  const ev=currentEventData.event;
+  document.getElementById('logs-title').textContent=ev.name;
+  document.getElementById('logs-back-label').textContent=ev.name;
+  renderLogs(currentEventData.logs||[]);
   showPage('page-logs');
 }
 
 function renderLogs(logs){
-  const el = document.getElementById('logs-list');
+  const el=document.getElementById('logs-list');
   if(!logs.length){ el.innerHTML=`<div class="no-data">${t('no_logs')}</div>`; return; }
-  el.innerHTML = logs.map(x => {
-    const isPaid = x.status === 'paid';
+  el.innerHTML=logs.map(x=>{
+    const isPaid=x.status==='paid';
+    const isLabour=x.type==='labour';
+    const detail=isLabour
+      ? `${fmt(x.rate_per_day)}/day × ${x.days_worked} days`
+      : `${x.item||''}${x.quantity?' · '+x.quantity:''} <span class="cat-badge ${catColors[x.category]||'cat-others'}">${t('cat_'+x.category)||x.category}</span>`;
     return `
     <div class="log-entry">
       <div class="log-left">
-        <div class="log-vendor">${x.name}</div>
-        <div class="log-detail">
-          ${x.item||''}${x.quantity?' · '+x.quantity:''}
-          <span class="cat-badge ${catColors[x.category]||'cat-others'}" style="margin-left:4px">${t('cat_'+x.category)||x.category}</span>
+        <div class="log-name">
+          <span class="type-badge ${isLabour?'type-labour':'type-expense'}">${isLabour?t('cat_labour'):t('expenses')}</span>
+          ${x.name}
         </div>
-        <div class="log-ts">${fmtTS(x.timestamp||x.date)}</div>
+        <div class="log-detail">${detail}</div>
+        <div class="log-ts">${fmtTS(x.timestamp)}</div>
       </div>
       <div class="log-right">
         <div class="log-amount">${fmt(x.amount)}</div>
         <button class="status-badge ${isPaid?'status-paid':'status-due'}"
-          onclick="toggleExpenseStatus(${x.id}, '${isPaid?'due':'paid'}')">
-          ${isPaid ? t('paid') : t('due')}
+          onclick="${isLabour?`toggleLabourStatus(${x.id},'${isPaid?'due':'paid'}')`:`toggleExpenseStatus(${x.id},'${isPaid?'due':'paid'}')`}">
+          ${isPaid?t('paid'):t('due')}
         </button>
       </div>
     </div>`;
   }).join('');
 }
 
-async function toggleExpenseStatus(id, newStatus){
-  await fetch(`/api/expenses/${id}/status`, {
-    method:'PATCH',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({status: newStatus})
-  });
-  // Reload data and re-render logs
-  const res = await fetch(`/api/events/${currentEventId}`);
-  currentEventData = await res.json();
-  renderLogs(currentEventData.logs || []);
+async function reloadEventData(){
+  const res=await fetch(`/api/events/${currentEventId}`);
+  currentEventData=await res.json();
+  renderLogs(currentEventData.logs||[]);
+  renderLabour(currentEventData.labour);
   renderExpenseGroups(currentEventData.expenses);
   renderSummary(currentEventData.summary);
 }
 
-// MODALS
-function openModal(id){ document.getElementById(id).classList.add('open'); }
-function closeModal(id, e){ if(!e||e.target.classList.contains('overlay')) document.getElementById(id).classList.remove('open'); }
-
-function openAddEvent(){
-  document.getElementById('f-ename').value='';
-  document.getElementById('f-client').value='';
-  document.getElementById('f-edate').value=today();
-  openModal('modal-event');
+async function toggleLabourStatus(id,newStatus){
+  await fetch(`/api/labour/${id}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:newStatus})});
+  reloadEventData();
+}
+async function toggleExpenseStatus(id,newStatus){
+  await fetch(`/api/expenses/${id}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:newStatus})});
+  reloadEventData();
+}
+async function markLabourPaid(id){
+  await fetch(`/api/labour/${id}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:'paid'})});
+  loadEvent(currentEventId);
 }
 
+// MODALS
+function openModal(id){ document.getElementById(id).classList.add('open') }
+function closeModal(id,e){ if(!e||e.target.classList.contains('overlay')) document.getElementById(id).classList.remove('open') }
+
+function openAddEvent(){ document.getElementById('f-ename').value=''; document.getElementById('f-client').value=''; document.getElementById('f-edate').value=today(); openModal('modal-event') }
 async function saveEvent(){
-  const name=document.getElementById('f-ename').value.trim();
-  const client=document.getElementById('f-client').value.trim();
-  const date=document.getElementById('f-edate').value;
+  const name=document.getElementById('f-ename').value.trim(), client=document.getElementById('f-client').value.trim(), date=document.getElementById('f-edate').value;
   if(!name||!client||!date) return;
   await fetch('/api/events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,client_name:client,date})});
-  closeModal('modal-event');
-  loadEvents();
+  closeModal('modal-event'); loadEvents();
 }
 
-function openAddLabour(){
-  document.getElementById('l-name').value='';
-  document.getElementById('l-rate').value='';
-  document.getElementById('l-days').value='';
-  document.getElementById('l-total').value='';
-  openModal('modal-labour');
-}
-
-function calcLabourTotal(){
-  const r=parseFloat(document.getElementById('l-rate').value)||0;
-  const d=parseFloat(document.getElementById('l-days').value)||0;
-  if(r&&d) document.getElementById('l-total').value=(r*d).toFixed(0);
-}
-
+function openAddLabour(){ document.getElementById('l-name').value=''; document.getElementById('l-rate').value=''; document.getElementById('l-days').value=''; document.getElementById('l-total').value=''; openModal('modal-labour') }
+function calcLabourTotal(){ const r=parseFloat(document.getElementById('l-rate').value)||0,d=parseFloat(document.getElementById('l-days').value)||0; if(r&&d) document.getElementById('l-total').value=(r*d).toFixed(0) }
 async function saveLabour(){
-  const name=document.getElementById('l-name').value.trim();
-  const rate=parseFloat(document.getElementById('l-rate').value)||0;
-  const days=parseFloat(document.getElementById('l-days').value)||0;
-  const total=parseFloat(document.getElementById('l-total').value)||(rate*days);
+  const name=document.getElementById('l-name').value.trim(), rate=parseFloat(document.getElementById('l-rate').value)||0, days=parseFloat(document.getElementById('l-days').value)||0, total=parseFloat(document.getElementById('l-total').value)||(rate*days);
   if(!name||!total) return;
   await fetch(`/api/events/${currentEventId}/labour`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,rate_per_day:rate,days_worked:days,total_pay:total})});
-  closeModal('modal-labour');
-  loadEvent(currentEventId);
+  closeModal('modal-labour'); loadEvent(currentEventId);
 }
+async function deleteLabour(id){ if(!confirm('Delete?')) return; await fetch(`/api/labour/${id}`,{method:'DELETE'}); loadEvent(currentEventId) }
 
-async function deleteLabour(id){
-  if(!confirm('Delete this entry?')) return;
-  await fetch(`/api/labour/${id}`,{method:'DELETE'});
-  loadEvent(currentEventId);
-}
-
-function selectStatus(s){
-  selectedStatus = s;
-  document.getElementById('opt-due').className = 'status-opt' + (s==='due'?' active-due':'');
-  document.getElementById('opt-paid').className = 'status-opt' + (s==='paid'?' active-paid':'');
-}
-
-function openAddExpense(){
-  document.getElementById('x-cat').value='kirana';
-  document.getElementById('x-name').value='';
-  document.getElementById('x-item').value='';
-  document.getElementById('x-qty').value='';
-  document.getElementById('x-amount').value='';
-  selectStatus('due');
-  openModal('modal-expense');
-}
-
+function selectStatus(s){ selectedStatus=s; document.getElementById('opt-due').className='status-opt'+(s==='due'?' active-due':''); document.getElementById('opt-paid').className='status-opt'+(s==='paid'?' active-paid':'') }
+function openAddExpense(){ document.getElementById('x-cat').value='kirana'; document.getElementById('x-name').value=''; document.getElementById('x-item').value=''; document.getElementById('x-qty').value=''; document.getElementById('x-amount').value=''; selectStatus('due'); openModal('modal-expense') }
 async function saveExpense(){
-  const cat=document.getElementById('x-cat').value;
-  const name=document.getElementById('x-name').value.trim();
-  const item=document.getElementById('x-item').value.trim();
-  const qty=document.getElementById('x-qty').value.trim();
-  const amount=parseFloat(document.getElementById('x-amount').value)||0;
+  const cat=document.getElementById('x-cat').value, name=document.getElementById('x-name').value.trim(), item=document.getElementById('x-item').value.trim(), qty=document.getElementById('x-qty').value.trim(), amount=parseFloat(document.getElementById('x-amount').value)||0;
   if(!name||!amount) return;
-  await fetch(`/api/events/${currentEventId}/expenses`,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({category:cat,name,item,quantity:qty,amount,status:selectedStatus})
+  await fetch(`/api/events/${currentEventId}/expenses`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({category:cat,name,item,quantity:qty,amount,status:selectedStatus})});
+  closeModal('modal-expense'); loadEvent(currentEventId);
+}
+async function deleteExpense(id){ if(!confirm('Delete?')) return; await fetch(`/api/expenses/${id}`,{method:'DELETE'}); loadEvent(currentEventId) }
+async function deleteCurrentEvent(){ if(!confirm('Delete this event and all data?')) return; await fetch(`/api/events/${currentEventId}`,{method:'DELETE'}); goBack() }
+
+// INVENTORY
+async function loadInventory(){
+  const res=await fetch('/api/inventory');
+  inventoryData=await res.json();
+  renderInventory(inventoryData);
+}
+
+function daysUntilExpiry(expDate){
+  if(!expDate) return null;
+  const diff=new Date(expDate)-new Date(today());
+  return Math.ceil(diff/(1000*60*60*24));
+}
+
+function renderInventory(items){
+  // alert strip
+  const alertEl=document.getElementById('inv-alert');
+  const expiring=items.filter(i=>{ const d=daysUntilExpiry(i.expiry_date); return d!==null&&d<=7 });
+  if(expiring.length){
+    alertEl.innerHTML=`<div class="alert-strip" onclick="scrollToExpiring()">
+      <span class="alert-strip-text">⚠ ${expiring.length} ${t('expiring_soon')}</span>
+      <span style="font-size:12px;color:var(--yellow)">${t('tap_to_view')}</span>
+    </div>`;
+  } else { alertEl.innerHTML='' }
+
+  const listEl=document.getElementById('inv-list');
+  if(!items.length){ listEl.innerHTML=`<div class="no-data">${t('no_inventory')}<br><br><button class="btn btn-primary btn-sm" onclick="openAddInventory()">+ ${t('add_item')}</button></div>`; return; }
+
+  const sorted=[...items].sort((a,b)=>{
+    const da=daysUntilExpiry(a.expiry_date), db=daysUntilExpiry(b.expiry_date);
+    if(da===null&&db===null) return a.name.localeCompare(b.name);
+    if(da===null) return 1; if(db===null) return -1;
+    return da-db;
   });
-  closeModal('modal-expense');
-  loadEvent(currentEventId);
+
+  listEl.innerHTML=sorted.map(i=>{
+    const d=daysUntilExpiry(i.expiry_date);
+    let expClass='exp-none', expLabel='-';
+    if(d!==null){
+      if(d<0){ expClass='exp-expired'; expLabel=t('expired_label') }
+      else if(d<=2){ expClass='exp-urgent'; expLabel=`${d}d` }
+      else if(d<=7){ expClass='exp-soon'; expLabel=`${d}d` }
+      else{ expClass='exp-ok'; expLabel=fmtDate(i.expiry_date) }
+    }
+    return `
+    <div class="inv-item" id="inv-${i.id}">
+      <div class="inv-item-left">
+        <div class="inv-item-name">${i.name}</div>
+        <div class="inv-item-qty">${i.quantity} ${i.unit}${i.notes?' · '+i.notes:''}</div>
+      </div>
+      <div class="inv-item-right">
+        <div><span class="exp-badge ${expClass}">${expLabel}</span></div>
+        <div style="margin-top:4px;display:flex;gap:6px;justify-content:flex-end">
+          <button class="btn btn-ghost btn-sm" onclick="openEditInventory(${i.id})" style="padding:3px 8px;font-size:12px">✏</button>
+          <button class="del-btn" onclick="deleteInventoryItem(${i.id})">×</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-async function deleteExpense(id){
-  if(!confirm('Delete this entry?')) return;
-  await fetch(`/api/expenses/${id}`,{method:'DELETE'});
-  loadEvent(currentEventId);
+function filterInventory(){
+  const q=document.getElementById('inv-search').value.trim().toLowerCase();
+  if(!q){ renderInventory(inventoryData); return; }
+  const filtered=inventoryData.filter(i=>i.name.toLowerCase().includes(q)||(i.notes||'').toLowerCase().includes(q));
+  const listEl=document.getElementById('inv-list');
+  if(!filtered.length){
+    listEl.innerHTML=`<div class="no-data" style="padding:24px">"${q}" not in godown.<br><br><button class="btn btn-primary btn-sm" onclick="openAddInventoryWithName('${q}')">+ Add ${q}</button></div>`;
+    return;
+  }
+  renderInventory(filtered);
 }
 
-async function deleteCurrentEvent(){
-  if(!confirm('Delete this event and all its data?')) return;
-  await fetch(`/api/events/${currentEventId}`,{method:'DELETE'});
-  goBack();
+function scrollToExpiring(){
+  const first=document.querySelector('.exp-urgent,.exp-expired,.exp-soon');
+  if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
 }
+
+function openAddInventory(){ document.getElementById('i-name').value=''; document.getElementById('i-qty').value=''; document.getElementById('i-unit').value='kg'; document.getElementById('i-exp').value=''; document.getElementById('i-notes').value=''; openModal('modal-inv') }
+function openAddInventoryWithName(name){ openAddInventory(); document.getElementById('i-name').value=name }
+
+let editingInvId=null;
+function openEditInventory(id){
+  const item=inventoryData.find(i=>i.id===id);
+  if(!item) return;
+  editingInvId=id;
+  document.getElementById('i-name').value=item.name;
+  document.getElementById('i-qty').value=item.quantity;
+  document.getElementById('i-unit').value=item.unit;
+  document.getElementById('i-exp').value=item.expiry_date||'';
+  document.getElementById('i-notes').value=item.notes||'';
+  openModal('modal-inv');
+}
+
+async function saveInventory(){
+  const name=document.getElementById('i-name').value.trim(), qty=parseFloat(document.getElementById('i-qty').value)||0, unit=document.getElementById('i-unit').value, exp=document.getElementById('i-exp').value, notes=document.getElementById('i-notes').value.trim();
+  if(!name||!qty) return;
+  if(editingInvId){
+    await fetch(`/api/inventory/${editingInvId}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({quantity:qty,unit,expiry_date:exp||null,notes})});
+    editingInvId=null;
+  } else {
+    await fetch('/api/inventory',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,quantity:qty,unit,expiry_date:exp||null,notes})});
+  }
+  closeModal('modal-inv'); loadInventory();
+}
+
+async function deleteInventoryItem(id){ if(!confirm('Delete this item?')) return; await fetch(`/api/inventory/${id}`,{method:'DELETE'}); loadInventory() }
 
 loadEvents();
 </script>
